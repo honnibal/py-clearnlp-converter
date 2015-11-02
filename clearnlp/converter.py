@@ -92,17 +92,6 @@ class SubprocessConverter(object):
                 raise ValueError("Bad exit code from Stanford CoreNLP")
 
 
-class TemporaryTextFile(object):
-    def __enter__(self):
-        input_file = tempfile.NamedTemporaryFile(delete=False)
-        for ptb_tree in ptb_trees:
-            self._raise_on_bad_input(ptb_tree)
-            tree_with_line_break = ptb_tree + "\n"
-            input_file.write(tree_with_line_break.encode("utf-8"))
-        input_file.flush()
-        return input_file
-
-
 class JavaRuntimeVersionError(EnvironmentError):
     """Error for when the Java runtime environment is too old to support
     the specified version of Stanford CoreNLP."""
@@ -111,5 +100,3 @@ class JavaRuntimeVersionError(EnvironmentError):
                   "CoreNLP version 3.5.0 or later and 1.6+ to use CoreNLP " \
                   "version 1.3.1 or later)"
         super(JavaRuntimeVersionError, self).__init__(message)
-
-
