@@ -1,0 +1,3 @@
+plac
+pytest
+jpype1
