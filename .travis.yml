@@ -1,0 +1,17 @@
+language: python
+
+os:
+  - linux
+
+python:
+  - "2.7"
+  - "3.4"
+
+# install dependencies
+install:
+  - "pip install --upgrade setuptools"
+  - "python setup.py install"
+
+# run tests
+script:
+  - "py.test clearnlp/tests"
